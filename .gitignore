@@ -1,0 +1,55 @@
+# Python cache
+
+**pycache**/
+*.py[cod]
+
+# Virtual environments
+
+.venv/
+venv/
+env/
+
+# Secrets and credentials
+
+.env
+.env.*
+!.env.example
+
+# Jupyter temporary files
+
+.ipynb_checkpoints/
+
+# Editor and operating system files
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and temporary files
+
+*.log
+*.tmp
+
+# Local datasets and generated data
+
+data/raw/*
+data/interim/*
+data/processed/*
+
+# Keep dataset documentation and directory placeholders
+
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!data/README.md
+
+# Generated model artifacts
+
+models/*.pkl
+models/*.joblib
+
+# Generated reports and temporary outputs
+
+reports/tmp/
