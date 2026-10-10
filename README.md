@@ -1,222 +1,224 @@
 # Supply Chain Delivery Delay & Operational Risk Analysis
 
-**End-to-end Supply Chain Analytics | Exploratory Data Analysis | Machine Learning**
+> Analyzing 172K+ e-commerce orders to find why 54.7% of deliveries run late, what it puts at risk, and predicting late orders before dispatch using **Python, Pandas, Seaborn, Scikit-Learn and SMOTE**.
 
-An end-to-end supply chain analytics and machine learning project investigating delivery delays, identifying operational bottlenecks, analyzing profitability, and predicting potential fulfillment SLA breaches.
+---
 
-## Project Overview
+## Table of Contents
 
-Late deliveries can negatively affect customer satisfaction, supply chain efficiency, logistics costs, and profitability. This project analyzes order-level supply chain data to understand delivery performance, identify patterns associated with late deliveries, and explore how machine learning can support proactive operational risk management.
+1. [Overview](#overview)
+2. [Problem Statement](#problem-statement)
+3. [Dataset Description](#dataset-description)
+4. [Tools & Technologies](#tools--technologies)
+5. [Project Structure](#project-structure)
+6. [Data Cleaning & Preparation](#data-cleaning--preparation)
+7. [EDA & Key Insights](#eda--key-insights)
+8. [Machine Learning Model](#machine-learning-model)
+9. [Dashboard & Visuals](#dashboard--visuals)
+10. [How to Run This Project](#how-to-run-this-project)
+11. [Final Recommendations & Future Work](#final-recommendations--future-work)
+12. [Author & Contact](#author--contact)
 
-The analysis covers **172K+ orders** and investigates a reported **54.7% late-delivery rate**, with a focus on identifying potential drivers of delivery delays and improving fulfillment decisions.
+---
 
-## Business Objectives
+## Overview
 
-* Measure overall delivery performance and late-delivery frequency.
-* Identify product categories and operational segments associated with delivery delays.
-* Explore delivery trends across time and other available business dimensions.
-* Investigate relationships between delivery performance and profitability.
-* Develop a machine learning pipeline to classify potential delivery SLA breaches.
-* Translate analytical findings into actionable business recommendations.
+This project studies the delivery operations of a global e-commerce company that sells sporting goods, fitness equipment, outdoor gear, footwear and apparel across multiple regions. It covers **172,765 orders (Jan 2015 to Jan 2018)** and answers four questions:
 
-## Key Areas of Analysis
+- How often are orders late, and by how much?
+- How much profit sits on delayed orders?
+- Where are the bottlenecks (region, shipping mode, order status, time)?
+- Can we predict a late order before it ships?
 
-### 1. Delivery Performance Analysis
+A full written report is available in [`reports/`](reports/).
 
-* Analyze the distribution of late and on-time deliveries.
-* Examine delivery delay patterns.
-* Investigate trends across available time dimensions.
+## Problem Statement
 
-### 2. Operational Bottleneck Detection
+Actual shipping times often differ from scheduled delivery windows. This causes late deliveries, lost customer trust, unpredictable order profitability, and no way to make reliable delivery promises at checkout.
 
-* Explore delivery performance across product categories and other available operational segments.
-* Identify areas that may require further investigation or process improvement.
-* Analyze potential drivers of late delivery.
+**Goal:** analyze delivery operations, identify bottlenecks, and build a predictive model that flags high-risk orders so the business can reduce delays and protect profit.
 
-### 3. Profitability Analysis
+## Dataset Description
 
-* Examine profitability distributions.
-* Investigate relationships between operational performance and profitability.
-* Identify areas for deeper business analysis.
+| Item | Detail |
+|---|---|
+| Source | DataCo Smart Supply Chain dataset ([Kaggle](https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis)) |
+| File | `data/DataCoSupplyChainDataset.xls` |
+| Raw size | 180,519 rows x 53 columns |
+| After cleaning | 172,765 rows x 20 columns (canceled shipments removed) |
+| Duplicates | 0 |
+| Period | 2015-01-01 to 2018-01-31 |
+| Key columns | Shipping Mode, Days for shipment (scheduled), Days for shipping (real), Delivery Status, Late_delivery_risk, Order Region, Order Status, Order Profit Per Order, order date, shipping date |
 
-### 4. Machine Learning for Delivery Risk
+## Tools & Technologies
 
-The project explores a classification approach to predict potential fulfillment SLA breaches.
+- **Language:** Python 3
+- **Data analysis:** Pandas, NumPy
+- **Visualization:** Matplotlib, Seaborn
+- **Machine learning:** Scikit-Learn (Random Forest), Imbalanced-Learn (SMOTE)
+- **Environment:** Jupyter Notebook
+- **Version control:** Git, GitHub
 
-**Planned / implemented modeling techniques:**
+## Project Structure
 
-* Random Forest classification
-* SMOTE for handling class imbalance
-* Feature engineering and data preprocessing
-* Model evaluation using appropriate classification metrics
-
-The final evaluation should report measured performance on a held-out test set rather than relying on training accuracy alone.
-
-## Key Findings
-
-* **Dataset scale:** More than 172,000 orders.
-* **Reported late-delivery rate:** 54.7%.
-* **Operational insights:** Visual analysis investigates delivery trends, category-level bottlenecks, and potential drivers of late delivery.
-* **Profitability insights:** Visualizations examine profitability distribution and its relationship to supply chain operations.
-* **Predictive analytics:** Machine learning is used to explore the prediction of potential delivery SLA breaches.
-
-*Note: Validate all headline figures against the final analysis and dataset before presenting them as definitive results.*
-
-## Visual Insights
-
-### Delivery Delay Distribution and Profit Analysis
-
-![Delivery Delay Distribution and Profit Analysis](visuals/delay_distribution_and_profit_analysis.png)
-
-### Delivery Trends by Month, Day, and Hour
-
-![Delivery Trends](visuals/delay_trend_month_day_hour.png)
-
-### Bottleneck Detection by Category
-
-![Bottleneck Detection](visuals/bottleneck_detection_by_category.png)
-
-### Profitability Distribution
-
-![Profitability Distribution](visuals/profitability_distribution.png)
-
-### Drivers of Late Delivery in Central Africa
-
-![Drivers of Late Delivery in Central Africa](visuals/top_drivers_late_delivery_central_africa.png)
-
-## Technology Stack
-
-| Technology       | Purpose                             |
-| ---------------- | ----------------------------------- |
-| Python           | Data analysis and model development |
-| Pandas           | Data manipulation and cleaning      |
-| NumPy            | Numerical operations                |
-| Matplotlib       | Data visualization                  |
-| Seaborn          | Statistical visualization           |
-| Scikit-learn     | Machine learning and evaluation     |
-| Imbalanced-learn | SMOTE and class imbalance handling  |
-| Jupyter Notebook | Interactive analysis                |
-| Git & GitHub     | Version control and project sharing |
-
-## Repository Structure
-
-```text
+```
 Supply-Chain-Delivery-Delay-Operational-Risk-Analysis/
-│
 ├── data/
 │   └── DataCoSupplyChainDataset.xls
-│
 ├── notebooks/
 │   └── supply_chain.ipynb
-│
 ├── reports/
 │   └── README.md
-│
 ├── visuals/
 │   ├── bottleneck_detection_by_category.png
 │   ├── delay_distribution_and_profit_analysis.png
 │   ├── delay_trend_month_day_hour.png
-│   └── profitability_distribution.png
+│   ├── profitability_distribution.png
 │   └── top_drivers_late_delivery_central_africa.png
-│
 ├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
 
-## Getting Started
+## Data Cleaning & Preparation
 
-### 1. Clone the repository
+- Dropped personal and free-text columns (names, email, password, street, zip codes), ID columns, a fully empty column (Product Description), a single-value column (Product Status) and a duplicate of profit (Benefit per order).
+- Removed **canceled shipments** (172,765 orders kept).
+- Converted order and shipping dates to datetime.
+- Created features:
+  - `Order Processing Time` = shipping date minus order date (days)
+  - `Delay` = Order Processing Time minus Scheduled Days
+  - `Is_Delayed` = Delay greater than 0
+  - `order_month`, `order_day`, `order_hour`
+  - `Profitability Flag` = Profit / Loss / Break-even
+- **Note:** the dataset flag `Late_delivery_risk` marks 57.29% of orders as late. The Delay-based definition above gives 54.71%. Business analysis uses the Delay-based rate. The ML model predicts `Late_delivery_risk`.
 
-```bash
-git clone https://github.com/seema-kri/Supply-Chain-Delivery-Delay-Operational-Risk-Analysis.git
-```
+## EDA & Key Insights
 
-### 2. Navigate to the project directory
+### KPIs
 
-```bash
-cd Supply-Chain-Delivery-Delay-Operational-Risk-Analysis
-```
+| Metric | Value |
+|---|---|
+| Total orders | 172,765 |
+| Late deliveries | 94,523 |
+| **Late delivery rate** | **54.71%** |
+| On-time rate | 45.29% |
+| Total profit (profitable orders only) | $7.5M |
+| Profit on delayed orders | $2.1M |
+| 90th percentile delay | 3 days |
+| Mean profit per order | $22.03 |
 
-### 3. Create a virtual environment
+### Key findings
 
-```bash
-python -m venv .venv
-```
+- **Shipping mode is the biggest lever.** Late rate: First Class **100%**, Second Class **79.8%**, Standard Class **39.8%**, Same Day **0%**.
+- **Delay is mostly 1 day.** 31.0% of orders arrive exactly 1 day late. Orders delayed 1 to 4 days make up the full 54.7%.
+- **Unit profit does not change with delay.** Mean profit stays around $20 to $23 at every delay level, so the damage comes from the volume of late orders.
+- **Profitability:** 80.7% of orders are profitable, 18.7% lose money, 0.6% break even.
+- **Regions:** Central Africa is the worst at 58.7%. Other top regions sit at 55.1% to 56.0%, which points to a company-wide issue.
+- **Payment review is a regional problem.** Globally, order statuses are flat (about 53% to 55%). In Central Africa PAYMENT_REVIEW is 80.0% late, and in East Africa 83.3%.
+- **Weak departments in Central Africa:** Outdoors (61.3%) and Golf (60.8%).
+- **Time patterns are mild.** Peak months: Aug and Sep (55.4%), Dec (55.2%). Lowest: Jul (about 53.7%). Worst hour: 8 PM (57.1%). Day of week varies by about 1.6 points only.
 
-Activate it on Windows PowerShell:
+## Machine Learning Model
 
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
+| Step | Detail |
+|---|---|
+| Target | `Late_delivery_risk` (1 = late) |
+| Features | Scheduled days, order month, order hour, plus frequency-encoded Type, Category, Customer Segment, Department, Order Region, Shipping Mode |
+| Split | 80/20 stratified (138,212 train / 34,553 test) |
+| Balancing | SMOTE on training set (79,182 per class) |
+| Model | Random Forest Classifier |
 
-### 4. Install dependencies
+**Test results**
 
-```bash
-python -m pip install -r requirements.txt
-```
+| Class | Precision | Recall | F1 |
+|---|---|---|---|
+| 0 (On-time) | 0.68 | 0.73 | 0.70 |
+| 1 (Late) | 0.79 | 0.75 | 0.77 |
+| **Accuracy** | | | **0.74** |
 
-### 5. Run the notebook
+**Limitation:** scheduled days are fixed per shipping mode (Same Day 0, First 1, Second 2, Standard 4), so shipping mode strongly drives the prediction. Future work below addresses this.
 
-Launch Jupyter:
+## Dashboard & Visuals
 
-```bash
-jupyter notebook
-```
+This project uses static analytical charts generated in the notebook.
 
-Open `notebooks/supply_chain.ipynb` and run the cells in sequence.
+**Profitability distribution**
 
-**Dataset note:** The notebook expects the dataset at the path configured in the code. Update the file path if necessary. The dataset is currently included in the repository; check its redistribution permissions before sharing it publicly.
+![Profitability Distribution](visuals/profitability_distribution.png)
 
-## Model Evaluation
+**Delay distribution and profit by delay days**
 
-To demonstrate the reliability of the predictive pipeline, document the actual results for:
+![Delay Distribution and Profit](visuals/delay_distribution_and_profit_analysis.png)
 
-* Precision
-* Recall
-* F1-score
-* ROC-AUC, if appropriate
-* Confusion matrix
-* Baseline versus final model performance
+**Bottleneck detection by category**
 
-For a delivery-risk use case, recall is especially relevant because missed late deliveries may be costly. However, precision must also be considered to avoid unnecessarily flagging too many orders.
+![Bottleneck Detection](visuals/bottleneck_detection_by_category.png)
 
-SMOTE should be applied only to the training data, after the train/test split, to prevent data leakage.
+**Top drivers of late delivery, Central Africa**
 
-## Business Recommendations
+![Top Drivers Central Africa](visuals/top_drivers_late_delivery_central_africa.png)
 
-Based on validated findings, the analysis can support the following actions:
+**Delay trend by month, day and hour**
 
-1. **Prioritize at-risk orders:** Use predicted delivery risk to focus operational attention on orders that may miss their SLA.
-2. **Investigate bottlenecks:** Examine categories and operational segments with consistently high delay rates.
-3. **Monitor delivery performance:** Track late-delivery rates over time and investigate emerging patterns.
-4. **Balance cost and service:** Evaluate delivery improvements alongside profitability and logistics costs.
-5. **Review model performance:** Monitor precision, recall, and false negatives before using predictions for operational decisions.
+![Delay Trend](visuals/delay_trend_month_day_hour.png)
 
-These are potential recommendations; confirm them against the actual analytical results before treating them as proven findings.
+## How to Run This Project
 
-## Limitations
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/seema-kri/Supply-Chain-Delivery-Delay-Operational-Risk-Analysis.git
+   cd Supply-Chain-Delivery-Delay-Operational-Risk-Analysis
+   ```
+2. **Create a virtual environment (optional)**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate        # Windows: venv\Scripts\activate
+   ```
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Check the data path.** The dataset is in `data/`. In the notebook, set the read line to match your file:
+   ```python
+   df = pd.read_csv('../data/DataCoSupplyChainDataset.csv', encoding='latin-1')
+   # or, if you keep the .xls file:
+   # df = pd.read_excel('../data/DataCoSupplyChainDataset.xls')
+   ```
+5. **Open the notebook**
+   ```bash
+   jupyter notebook notebooks/supply_chain.ipynb
+   ```
+6. Run all cells from top to bottom. Charts are saved as PNG files.
 
-* Historical patterns may not reflect future delivery conditions.
-* Model performance depends on data quality, feature availability, and evaluation methodology.
-* SMOTE does not automatically improve predictive performance and should be validated against a suitable baseline.
-* Observational analysis identifies associations, not necessarily causal relationships.
-* Operational deployment would require additional validation and ongoing monitoring.
+## Final Recommendations & Future Work
 
-## Future Improvements
+**Recommendations**
 
-* Compare Random Forest with alternative classification models.
-* Improve feature engineering and model tuning.
-* Add explainability techniques such as feature importance or SHAP, where appropriate.
-* Build an interactive dashboard for delivery performance monitoring.
-* Develop a repeatable prediction pipeline for identifying high-risk orders.
+1. **Audit First and Second Class shipping (critical).** Promise windows of 1 and 2 days do not match delivered performance. Recalibrate promised dates at checkout or pause First Class until fixed. Study why Same Day works (0% late).
+2. **Fix payment review delays in Central and East Africa.** Escalate orders held in review beyond a set time limit.
+3. **Plan for peaks.** Reserve carrier capacity before Aug/Sep and Dec, and test an evening dispatch cutoff.
+4. **Audit weak departments.** Outdoors and Golf in Central Africa, Health and Beauty and Pet Shop globally.
+5. **Cut loss-making orders (18.7%).** Review discounts and shipping costs on low-margin items.
+6. **Use the model as an early-warning tool** once leakage is checked, to trigger revised delivery dates and priority packing.
 
-## Author
+**Future work**
+
+- Remove or test shipping-mode dependence (evaluate on Standard and Second Class only).
+- Fit encoders on training data only, and compare Logistic Regression, XGBoost and LightGBM.
+- Add feature importance, confusion matrix, ROC-AUC and hyperparameter tuning.
+- Predict delay in days (regression), not only late or on-time.
+- Build an interactive dashboard (Power BI, Tableau or Streamlit) and deploy the model as an API.
+- Add warehouse backlog, weather and carrier tracking features.
+
+## Author & Contact
 
 **Seema Kumari**
+Data Analyst | Machine Learning Enthusiast
 
-GitHub: [@seema-kri](https://github.com/seema-kri)
+- GitHub: [@seema-kri](https://github.com/seema-kri)
+- LinkedIn: [seema-kumari-375763308](https://linkedin.com/in/seema-kumari-375763308)
 
 ---
 
-*This project demonstrates practical skills in data cleaning, exploratory data analysis, business insight generation, visualization, and machine learning for operational risk analysis.*
+*If you found this project useful, please give it a star.*
